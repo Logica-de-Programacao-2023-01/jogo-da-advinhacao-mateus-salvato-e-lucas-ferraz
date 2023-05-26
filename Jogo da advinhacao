@@ -1,0 +1,39 @@
+package main
+
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+
+func main() {
+	// Define o intervalo de números para adivinhar
+	min := 1
+	max := 100
+	// Inicializa o gerador de números randômicos
+	rand.Seed(time.Now().UnixNano())
+	// Gera um número aleatório para ser adivinhado
+	numero := rand.Intn(max-min+1) + min
+
+	fmt.Println("Bem-vindo ao jogo de adivinhação!")
+	fmt.Printf("Você tem 20 tentativas para adivinhar um número entre %d e %d.\n", min, max)
+
+	// Loop principal do jogo
+	for tentativa := 1; tentativa <= 20; tentativa++ {
+		var palpite int
+
+		fmt.Printf("Tentativa %d: ", tentativa)
+		fmt.Scanf("%d", &palpite)
+
+		if palpite < numero {
+			fmt.Println("Palpite muito baixo!")
+		} else if palpite > numero {
+			fmt.Println("Palpite muito alto!")
+		} else {
+			fmt.Println("Parabéns! Você acertou!")
+			return 
+		}
+	}
+
+	fmt.Println("Suas 20 tentativas acabaram. O número correto era:", numero)
+}
